@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  password: {
+  passwordHash: {
     type: String,
     requried: true,
   },
@@ -26,6 +26,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", UserSchema);
