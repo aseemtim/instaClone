@@ -1,6 +1,9 @@
-require("dotenv").config();
+require("dotenv").config({ path: "./config/.env" });
+const dbConnection = require("./config/database");
 const express = require("express");
 const app = express();
+
+dbConnection();
 
 app.get("/", (req, res) => {
   res.send("<h1>Hello Mom</h1>");
