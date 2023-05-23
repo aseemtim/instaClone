@@ -4,6 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const Post = require("./models/Post");
 const app = express();
+const postsRoutes = require("./routes/posts");
+const getPostController = require("./controllers/posts");
 
 dbConnection();
 
@@ -12,10 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-app.get("/", async (req, res) => {
-  const results = await Post.find({});
-  res.render("index.ejs", { posts: results });
-});
+app.use("/posts", postsRoutes);
+app.use("/", getPostController.getPosts);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

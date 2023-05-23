@@ -1,22 +1,20 @@
-const postRouter = require("express").Router();
 const Post = require("../models/Post");
-
-postRouter.post("/", async (req, res) => {
-  const { caption } = req.body;
-  const post = new Post({
-    caption,
-  });
-
-  const savedPost = await post.save();
-  console.log(savedPost);
-  res.redirect("/");
-});
-
-postRouter.get("/", async (req, res) => {
-  console.log("here in get post");
-  const posts = await Post.find({});
-  console.log(posts);
-  return res.json(posts);
-});
-
-module.exports = postRouter;
+module.exports = {
+  getPosts: async (req, res) => {
+    try {
+      const posts = await Post.find({});
+      res.render("index.ejs", { posts: posts });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  createPost: async (req, res) => {
+    try {
+      await Post.create({ caption: req.body.caption });
+      console.log("Post created");
+      res.redirect("/");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+};

@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MiniGram</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header>
@@ -20,7 +24,11 @@
       <ul class="posts">
         <li class="post">Test123</li>
         <% for(var i=0; i<posts.length; i++) {%>
-            <li class="post"><%=posts[i].caption%></li>
+            <li class="post">
+              <span class="caption"><%=posts[i].caption%></span>
+              <span class="like"></span>
+              <i class="bi bi-heart"></i>
+            </li>
         <% } %>
 
       </ul>
