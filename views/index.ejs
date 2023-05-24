@@ -19,7 +19,7 @@
         <label for="caption">Caption:</label><br />
         <input type="text" id="caption" name="caption" /><br />
         <label for="imgUpload">Image</label><br />
-        <input type="file" id="imageUpload" name="imgFile" /><br />
+        <input type="file" id="imageUpload" name="file" /><br />
         <input type="submit" value="Post" />
         
       </form>
@@ -32,6 +32,7 @@
               <img src="<%=posts[i].image%>" alt="Uploaded Image">
               <span class="like"></span>
               <a href="#"><i class="bi bi-heart"></i></a>
+              <!-- <a href="#"><i class="bi bi-heart-fill"></i></a> -->
             </li>
         <% } %>
 
