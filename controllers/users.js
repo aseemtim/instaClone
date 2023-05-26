@@ -1,29 +1,25 @@
 const bcrypt = require("bcrypt");
-const userRouter = require("express").Router();
 const User = require("../models/User");
 
-usersRouter.post("/", async (req, res) => {
-  const { username, password, firstName, lastName, dob, email } = req.body;
+module.exports = {
+  getUsers: async (req, res) => {
+    const users = await User.find({});
+    response.json(users);
+  },
+  postUser: async (req, res) => {
+    const { firstName, lastName, username, password } = req.body;
 
-  const saltRounds = 10;
-  const passwordHash = await bcrypt.hash(password, saltRounds);
+    const saltRounds = 10;
+    const passwordHash = await bcrypt.hash(password, saltRounds);
 
-  const user = new User({
-    username,
-    passwordHash,
-    firstName,
-    lastName,
-    dob,
-    email,
-  });
+    const user = new User({
+      firstName,
+      lastName,
+      username,
+      passwordHash,
+    });
 
-  const savedUser = await user.save();
-  response.status(201).json(savedUser);
-});
-
-usersRouter.get("/", async (req, res) => {
-  const users = await User.find({});
-  response.json(users);
-});
-
-module.exports = userRouter;
+    const savedUser = await user.save();
+    res.status(201).json(savedUser);
+  },
+};
