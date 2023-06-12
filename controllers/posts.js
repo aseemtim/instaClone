@@ -9,6 +9,14 @@ module.exports = {
       console.log(err);
     }
   },
+  getPostsById: async (req, res, id) => {
+    try {
+      const posts = await Post.findById(id);
+      res.render("index.ejs", { posts: posts });
+    } catch (err) {
+      console.log(err);
+    }
+  },
   createPost: async (req, res) => {
     try {
       // Handle image upload

@@ -9,7 +9,6 @@ module.exports = {
   postUser: async (req, res) => {
     console.log(req.body);
     const { firstName, lastName, username, password } = req.body;
-    console.log(firstName, lastName, username, password);
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(password, saltRounds);
 
