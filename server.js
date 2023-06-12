@@ -6,6 +6,7 @@ const Post = require("./models/Post");
 const app = express();
 const postsRoutes = require("./routes/posts");
 const loginRoutes = require("./routes/login");
+const userRoutes = require("./routes/users");
 const getPostController = require("./controllers/posts");
 
 dbConnection();
@@ -17,6 +18,7 @@ app.use(express.static("public"));
 
 app.use("/login", loginRoutes);
 app.use("/posts", postsRoutes);
+app.use("/users", userRoutes);
 app.use("/", getPostController.getPosts);
 
 const PORT = process.env.PORT;

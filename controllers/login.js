@@ -2,7 +2,6 @@ const User = require("../models/User");
 module.exports = {
   getLogin: (req, res) => {
     try {
-      console.log("hehe");
       res.render("login.ejs", { query: req.query });
     } catch (err) {
       console.log(err);
@@ -19,7 +18,7 @@ module.exports = {
           : await bcrypt.compare(password, user.passwordHash);
 
       if (!(user && passwordCorrect)) {
-        return response.status(401).json({
+        return res.status(401).json({
           error: "invalid username or password",
         });
       }

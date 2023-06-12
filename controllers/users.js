@@ -4,11 +4,12 @@ const User = require("../models/User");
 module.exports = {
   getUsers: async (req, res) => {
     const users = await User.find({});
-    response.json(users);
+    res.json(users);
   },
   postUser: async (req, res) => {
+    console.log(req.body);
     const { firstName, lastName, username, password } = req.body;
-
+    console.log(firstName, lastName, username, password);
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(password, saltRounds);
 
@@ -20,6 +21,7 @@ module.exports = {
     });
 
     const savedUser = await user.save();
-    res.status(201).json(savedUser);
+    console.log("user created successfully");
+    res.redirect("/");
   },
 };
