@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const Post = require("./models/Post");
 const app = express();
 const postsRoutes = require("./routes/posts");
+const loginRoutes = require("./routes/login");
 const getPostController = require("./controllers/posts");
 
 dbConnection();
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+app.use("/login", loginRoutes);
 app.use("/posts", postsRoutes);
 app.use("/", getPostController.getPosts);
 

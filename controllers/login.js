@@ -1,6 +1,13 @@
 const User = require("../models/User");
 module.exports = {
-  getLogin: res.render("login.ejs"),
+  getLogin: (req, res) => {
+    try {
+      console.log("hehe");
+      res.render("login.ejs", { query: req.query });
+    } catch (err) {
+      console.log(err);
+    }
+  },
   postLogin: async (req, res) => {
     try {
       const { username, password } = req.body;
