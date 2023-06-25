@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 module.exports = {
   getLogin: (req, res) => {
@@ -30,7 +32,7 @@ module.exports = {
 
       const token = jwt.sign(userForToken, process.env.SECRET);
 
-      response.status(200).send({ token, username: user.username });
+      res.status(200).send({ token, username: user.username });
     } catch (err) {
       console.log(err);
     }
